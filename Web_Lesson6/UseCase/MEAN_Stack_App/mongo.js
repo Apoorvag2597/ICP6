@@ -55,22 +55,22 @@ app.get('/get', function (req, res) {
 
 app.get('/delete/:toBeDeleted_id', function (req, res) {
 
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, function(err, db) { // Functions
         if(err)
         {
-            res.write("Failed, Error while connecting to Database");
+            res.write("Failed, Error while connecting to Database"); //If error occurs, it shows the error message
             res.end();
         }
 
-        db.collection('books').deleteOne({ _id: ObjectID( req.params.toBeDeleted_id)},function(err, result){
+        db.collection('books').deleteOne({ _id: ObjectID( req.params.toBeDeleted_id)},function(err, result){ //Delete function
             if(err)
             {
-                res.write("get Failed");
+                res.write("get Failed"); //Error occurs, it fails to load
                 res.end();
             }else
             {
 
-                res.send(JSON.stringify(result));
+                res.send(JSON.stringify(result)); //Displays result
             }
             console.log("Got All Documents");
 
@@ -81,10 +81,10 @@ app.get('/delete/:toBeDeleted_id', function (req, res) {
 
 
 app.get('/update/:toBeUpdated_id', function (req, res) {
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, function(err, db) { //Functions
         if(err)
         {
-            res.write("Failed, Error while connecting to Database");
+            res.write("Failed, Error while connecting to Database"); //fails to update if error occurs
             res.end();
         }
         console.log(req.query);
